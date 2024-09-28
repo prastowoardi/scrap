@@ -1,6 +1,6 @@
 const telegramToken = '8116731469:AAFLEqr4rlvO36elXuvgTjIfqfBPgVr_QHI'; 
 const chatId = '-1002486940964'; 
-const telegramSendPhotoUrl = `https://api.telegram.org/bot${telegramToken}/sendPhoto`;
+const telegramUrl = `https://api.telegram.org/bot${telegramToken}/sendPhoto`;
 
 describe('webscraper.io', () => {
   it('Fetches product and sends images to Telegram', () => {
@@ -22,7 +22,7 @@ describe('webscraper.io', () => {
 
         cy.request({
           method: 'POST',
-          url: telegramSendPhotoUrl,
+          url: telegramUrl,
           headers: {
             'Content-Type': 'application/json'
           },
