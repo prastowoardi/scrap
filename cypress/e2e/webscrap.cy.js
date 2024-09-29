@@ -1,9 +1,13 @@
-const telegramToken = '8116731469:AAFLEqr4rlvO36elXuvgTjIfqfBPgVr_QHI'; 
-const chatId = '-1002486940964'; 
-const telegramUrl = `https://api.telegram.org/bot${telegramToken}/sendPhoto`;
+const env = require('../../cypress.env.json');
+let telegramToken, chatId;
+let envName = 'webscraperToken';
 
 describe('webscraper.io', () => {
   it('Fetches product and sends images to Telegram', () => {
+    telegramToken = env.env[envName].telegramToken
+    chatId = env.env[envName].chatId
+    const telegramUrl = `https://api.telegram.org/bot${telegramToken}/sendPhoto`;
+
     cy.visit('https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops');
 
     // Ambil item tertentu dari halaman
@@ -17,8 +21,10 @@ describe('webscraper.io', () => {
         return { title, price, description, imageUrl };
       });
 
+      const additionalText = '<b>webscraper.io</b>\n\n';
+
       products.forEach(product => {
-        const message = `<b>Title:</b> ${product.title}\n<b>Price:</b> ${product.price}\n<b>Description:</b> ${product.description}`;
+        const message =  additionalText + `<b>Title:</b> ${product.title}\n<b>Price:</b> ${product.price}\n<b>Description:</b> ${product.description}`;
 
         cy.request({
           method: 'POST',
