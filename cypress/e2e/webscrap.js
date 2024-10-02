@@ -1,3 +1,4 @@
+const fs = require('fs');
 const env = require('../../cypress.env.json');
 let telegramToken, chatId;
 let envName = 'webscraperToken';
