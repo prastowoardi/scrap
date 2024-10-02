@@ -3,7 +3,7 @@ let telegramToken, chatId;
 let envName = 'webscraperToken';
 
 describe('webscraper.io', () => {
-  it('Fetches product and sends images to Telegram', () => {
+  it('Fetches product', () => {
     telegramToken = env.env[envName].telegramToken
     chatId = env.env[envName].chatId
     const telegramUrl = `https://api.telegram.org/bot${telegramToken}/sendPhoto`;
